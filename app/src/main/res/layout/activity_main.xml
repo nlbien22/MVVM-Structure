@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MVVMStructure.MainActivity">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="LoginViewModel"
+            type="com.example.mvvm.MVVMStructure.LoginViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/login_title"
+            android:text="Login"
+            android:textSize="48sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="32dp"
+            android:textColor="#E91E63"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_text_email"
+            android:hint="Email"
+            android:text="@={LoginViewModel.email}"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginLeft="12dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_text_pass"
+            android:text="@={LoginViewModel.passwords}"
+            android:hint="Passwords"
+            android:inputType="textPassword"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginLeft="12dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/login_message"
+            android:text="@={LoginViewModel.messageLogin}"
+            android:textSize="16sp"
+            android:visibility="@{LoginViewModel.isShowMessage ? View.VISIBLE : View.GONE}"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="32dp"
+            android:textColor="@{LoginViewModel.isSuccess ? @color/purple_700 : @color/pink}"
+            android:textStyle="bold"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_submit"
+            android:backgroundTint="#E91E63"
+            android:text="Submit"
+            android:onClick="@{ () -> LoginViewModel.onClickLogin()}"
+            android:textAllCaps="false"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="36dp"/>
+
+    </LinearLayout>
+
+
+</layout>
